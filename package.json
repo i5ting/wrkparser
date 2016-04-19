@@ -1,9 +1,10 @@
 {
   "name": "wrkparser",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "main.js",
   "scripts": {
+    "start": "git commit -am 'init' && git push && npm publish .",
     "test": "node test.js",
     "clean":"rm a.json && rm wrk.log.json"
   },

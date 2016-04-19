@@ -33,9 +33,9 @@ module.exports = function (file, is_write, out_file) {
   _set(t, r, 'line1', 'port', 3)
 
   // r.threads = t.match(c.line2)[1]
-  _set(t, r, 'line2', 'threads', 3)
+  _set(t, r, 'line2', 'threads', 1)
   // r.connections = t.match(c.line2)[2]
-  _set(t, r, 'line2', 'connections', 3)
+  _set(t, r, 'line2', 'connections', 2)
 
   // Thread Stats   Avg      Stdev     Max   +/- Stdev
   // Latency   147.35ms   50.36ms 440.07ms   82.79%
