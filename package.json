@@ -1,0 +1,19 @@
+{
+  "name": "wrkparser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "cat wrk.log| ./test.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i5ting/wrkparser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/i5ting/wrkparser/issues"
+  },
+  "homepage": "https://github.com/i5ting/wrkparser#readme"
+}

@@ -1,0 +1,1 @@
+lex  -o lex.yy.c wrk.lex && cc -o wrkparser lex.yy.c -ll && ./wrkparser
