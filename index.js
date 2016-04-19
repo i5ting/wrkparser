@@ -18,7 +18,7 @@ var config = {
 
 
 module.exports = function (file, out_file) {
-  var t = fs.readFileSync('./wrk.log').toString()
+  var t = fs.readFileSync(file).toString()
   var r = {}
   
   if (!out_file){
