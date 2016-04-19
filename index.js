@@ -17,7 +17,7 @@ var c = {
 }
 
 
-module.exports = function (file) {
+module.exports = function (file, out_file) {
   var t = fs.readFileSync('./wrk.log').toString()
   var r = {}
   
@@ -80,9 +80,18 @@ module.exports = function (file) {
     console.log( k +' = ' + r[k] )
   }
   
+  _write(out_file, r)
+  
   return r;
 }
 
 function _set(t,r,line1,key,index) {
   r[key] = t.match(c[line1])[index];
+}
+
+
+function _write(out_file, obj) {
+  var jsonString = JSON.stringify(obj, null, 4);
+  // console.log(jsonString)
+  fs.writeFileSync(out_file, jsonString)
 }
