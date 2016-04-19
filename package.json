@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "cat wrk.log| ./test.sh"
+    "test": "node test.js",
+    "clean":"rm a.json && rm wrk.log.json"
   },
   "repository": {
     "type": "git",

@@ -1,15 +1,14 @@
 # wrkparser
 
 
-
-## log
-
-https://github.com/HardySimpson/zlog
+## Install
 
 ```
-$ wget https://github.com/HardySimpson/zlog/archive/latest-stable.zip
-$ unzip latest-stable.zip
-$ cd latest-stable
-$ make 
-$ sudo make install
+npm i -S wrkparser
+```
+
+## Usages
+
+```
+var obj = require('wrkparser')('wrk.log', 'a.json')
 ```

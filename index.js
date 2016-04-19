@@ -1,6 +1,6 @@
 var fs = require('fs')
 
-var c = {
+var config = {
   line1 : /Running\s(\d+)s\s+test\s+\@\s+http:\/\/([\w\W]+):([\d+]+)\n?/,
   line2 : /(\d+)\s+threads\s+and\s+([\w]+)\s+connections/,
   line4 : /Latency\s+(\d+.\d+)ms\s+(\d+.\d+)ms\s+(\d+.\d+)ms\s+(\d+.\d+.)\s+/,
@@ -21,6 +21,10 @@ module.exports = function (file, out_file) {
   var t = fs.readFileSync('./wrk.log').toString()
   var r = {}
   
+  if (!out_file){
+    out_file = require('path').basename(file)+".json"
+  }
+  
   // r.time = t.match(c.line1)[1];
   _set(t, r, 'line1', 'time', 1)
   // r.host = t.match(c.line1)[2];
@@ -36,11 +40,15 @@ module.exports = function (file, out_file) {
   // Thread Stats   Avg      Stdev     Max   +/- Stdev
   // Latency   147.35ms   50.36ms 440.07ms   82.79%
   // console.log( t.match(c.line4) )
-  r.latency_avg = t.match(c.line4)[1]
-  r.latency_stdev = t.match(c.line4)[2]
-  r.latency_max = t.match(c.line4)[3]
-  r.latency_precent = t.match(c.line4)[4]
-
+  // r.latency_avg = t.match(c.line4)[1]
+  _set(t, r, 'line4', 'latency_avg', 1)
+  // r.latency_stdev = t.match(c.line4)[2]
+  _set(t, r, 'line4', 'latency_stdev', 2)
+  // r.latency_max = t.match(c.line4)[3]
+  _set(t, r, 'line4', 'latency_max', 3)
+  // r.latency_precent = t.match(c.line4)[4]
+  _set(t, r, 'line4', 'latency_precent', 4)
+  
   // console.log( t.match(c.line5) )
   // r.req_per_second_avg = t.match(c.line5)[1]
   _set(t, r, 'line5', 'req_per_second_avg', 1)
@@ -86,7 +94,7 @@ module.exports = function (file, out_file) {
 }
 
 function _set(t,r,line1,key,index) {
-  r[key] = t.match(c[line1])[index];
+  r[key] = t.match(config[line1])[index];
 }
 
 
