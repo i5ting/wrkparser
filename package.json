@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/i5ting/wrkparser/issues"
   },
-  "homepage": "https://github.com/i5ting/wrkparser#readme"
+  "homepage": "https://github.com/i5ting/wrkparser#readme",
+  "dependencies": {
+    "dirw": "^1.0.3"
+  }
 }
