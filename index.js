@@ -17,7 +17,7 @@ var config = {
 }
 
 
-module.exports = function (file, out_file) {
+module.exports = function (file, is_write, out_file) {
   var t = fs.readFileSync(file).toString()
   var r = {}
   
@@ -88,8 +88,10 @@ module.exports = function (file, out_file) {
     console.log( k +' = ' + r[k] )
   }
   
-  _write(out_file, r)
-  
+  if (is_write) {
+    _write(out_file, r)
+  }
+
   return r;
 }
 
