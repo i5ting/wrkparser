@@ -5,7 +5,7 @@ var config = {
   line2 : /(\d+)\s+threads\s+and\s+([\w]+)\s+connections/,
   line4 : /Latency\s+(\d+.\d+)ms\s+(\d+.\d+)ms\s+(\d+.\d+)ms\s+(\d+.\d+.)\s+/,
   //Req/Sec   751.63    398.90     3.23k    66.88%
-  line5 : /Req\/Sec\s+(\d+.\d+)\s+(\d+.\d+)\s+(\d+.\d+k)\s+(\d+.\d+.)\s+/,
+  line5 : /Req\/Sec\s+(\d+.\d+)\s+(\d+.\d+)\s+(\d+.\d+..)\s+(\d+.\d+.)\s+/,
   // 11845 requests in 2.07s, 1.71MB read
   line6 : /(\d+)\s+requests\s+in\s+(\d+.\d+.),\s+(\d+.\d+MB)\s+read/,
   //Socket errors: connect 0, read 257, write 2, timeout 0
@@ -49,7 +49,7 @@ module.exports = function (file, is_write, out_file) {
   // r.latency_precent = t.match(c.line4)[4]
   _set(t, r, 'line4', 'latency_precent', 4)
   
-  // console.log( t.match(c.line5) )
+  console.log( t.match(config.line5) )
   // r.req_per_second_avg = t.match(c.line5)[1]
   _set(t, r, 'line5', 'req_per_second_avg', 1)
   // r.req_per_second_stdev = t.match(c.line5)[2]
@@ -70,13 +70,13 @@ module.exports = function (file, is_write, out_file) {
   //Socket errors: connect 0, read 257, write 2, timeout 0
   // console.log( t.match(c.line7) )
   // r.connect = t.match(c.line7)[1]
-  _set(t, r, 'line7', 'connect', 1)
-  // r.read = t.match(c.line7)[2]
-  _set(t, r, 'line7', 'read', 2)
-  // r.write = t.match(c.line7)[3]
-  _set(t, r, 'line7', 'write', 3)
-  // r.timeout = t.match(c.line7)[4]
-  _set(t, r, 'line7', 'timeout', 4)
+  // _set(t, r, 'line7', 'connect', 1)
+  // // r.read = t.match(c.line7)[2]
+  // _set(t, r, 'line7', 'read', 2)
+  // // r.write = t.match(c.line7)[3]
+  // _set(t, r, 'line7', 'write', 3)
+  // // r.timeout = t.match(c.line7)[4]
+  // _set(t, r, 'line7', 'timeout', 4)
   
   // r.requests_per_sec = t.match(c.line8)[1]
   _set(t, r, 'line8', 'requests_per_sec', 1)
@@ -96,6 +96,9 @@ module.exports = function (file, is_write, out_file) {
 }
 
 function _set(t,r,line1,key,index) {
+  console.log(line1)
+  console.log(key)
+  console.log(index)
   r[key] = t.match(config[line1])[index];
 }
 
