@@ -5,7 +5,8 @@ var config = {
   line2 : /(\d+)\s+threads\s+and\s+([\w]+)\s+connections/,
   line4 : /Latency\s+(\d+.\d+)ms\s+(\d+.\d+)ms\s+(\d+.\d+)ms\s+(\d+.\d+.)\s+/,
   //Req/Sec   751.63    398.90     3.23k    66.88%
-  line5 : /Req\/Sec\s+(\d+.\d+)\s+(\d+.\d+)\s+(\d+.\d+..)\s+(\d+.\d+.)\s+/,
+  //Req/Sec     0.90k   136.21     1.26k    87.80%
+  line5 : /Req\/Sec\s+(\d+.\d+k?)\s+(\d+.\d+)\s+(\d+.\d+..)\s+(\d+.\d+.)\s+/,
   // 11845 requests in 2.07s, 1.71MB read
   line6 : /(\d+)\s+requests\s+in\s+(\d+.\d+.),\s+(\d+.\d+MB)\s+read/,
   //Socket errors: connect 0, read 257, write 2, timeout 0
@@ -20,11 +21,11 @@ var config = {
 module.exports = function (file, is_write, out_file) {
   var t = fs.readFileSync(file).toString()
   var r = {}
-  
+
   if (!out_file){
     out_file = require('path').basename(file)+".json"
   }
-  
+
   // r.time = t.match(c.line1)[1];
   _set(t, r, 'line1', 'time', 1)
   // r.host = t.match(c.line1)[2];
@@ -48,7 +49,7 @@ module.exports = function (file, is_write, out_file) {
   _set(t, r, 'line4', 'latency_max', 3)
   // r.latency_precent = t.match(c.line4)[4]
   _set(t, r, 'line4', 'latency_precent', 4)
-  
+
   console.log( t.match(config.line5) )
   // r.req_per_second_avg = t.match(c.line5)[1]
   _set(t, r, 'line5', 'req_per_second_avg', 1)
@@ -77,7 +78,7 @@ module.exports = function (file, is_write, out_file) {
   // _set(t, r, 'line7', 'write', 3)
   // // r.timeout = t.match(c.line7)[4]
   // _set(t, r, 'line7', 'timeout', 4)
-  
+
   // r.requests_per_sec = t.match(c.line8)[1]
   _set(t, r, 'line8', 'requests_per_sec', 1)
 
@@ -87,7 +88,7 @@ module.exports = function (file, is_write, out_file) {
   for(var k in r){
     console.log( k +' = ' + r[k] )
   }
-  
+
   if (is_write) {
     _write(out_file, r)
   }
