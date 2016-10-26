@@ -1,12 +1,12 @@
 {
   "name": "wrkparser",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "main.js",
   "scripts": {
     "start": "git commit -am 'init' && git push && npm publish .",
     "test": "node test.js",
-    "clean":"rm a.json && rm wrk.log.json"
+    "clean": "rm a.json && rm wrk.log.json"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,5 @@
     "url": "https://github.com/i5ting/wrkparser/issues"
   },
   "homepage": "https://github.com/i5ting/wrkparser#readme",
-  "dependencies": {
-    
-  }
+  "dependencies": {}
 }
